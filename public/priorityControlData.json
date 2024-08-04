@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "mainText": "Another example main text",
+        "hoverText": "Another example hover text.",
+        "accordionText": [
+        "<p>Example accordion text 1.</p>",
+        "<p>Example accordion text 2.</p>"
+        ]
+    },
+    {
+        "id": 2,
+        "mainText": "CalEnviroScreen4.0 percentile",
+        "hoverText": "Slide to adjust the community environmental justice impact score. Higher scores = greater priority.",
+        "accordionText": [
+            "<p>Range: {ciScoreRange[0]} to {ciScoreRange[1]}</p>",
+            "<p>CalEnviroScreen4.0 is California’s state environmental justice impact screening tool. CES4.0 combines 21 pollution and population-based criteria into a composite score at the census tract level, with percentile rankings based on comparison to statewide averages. More information available <a href=\"https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-40\" className=\"inline-link\">here</a>.</p>"
+        ]
+    },
+    {
+        "id": 3,
+        "mainText": "Another example main text",
+        "hoverText": "Another example hover text.",
+        "accordionText": [
+            "<p>Example accordion text 1.</p>",
+            "<p>Example accordion text 2.</p>"
+        ]
+    }
+]

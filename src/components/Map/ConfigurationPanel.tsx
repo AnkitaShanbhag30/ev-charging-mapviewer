@@ -18,13 +18,13 @@ interface ConfigurationPanelProps {
 }
 
 const titlesMap = {
-  togglePopRange: 'Population in pixels',
   toggleCiRange: 'CES Percentile',
   toggleLevRange: 'LEVs/10000',
   toggleMultiFaRange: '# Multi-Family residents',
   toggleRentersRange: '# Renters',
   toggleWalkableRange: 'Walkable',
   toggleDrivableRange: 'Drivable',
+  togglePopRange: 'Population in pixels',
   toggleCommercialRange: 'Commercial Zoning %',
   toggleResidentialRange: 'Multifamily Residential Zoning %',
   toggleNeviFilterActive: 'NEVI Eligible',

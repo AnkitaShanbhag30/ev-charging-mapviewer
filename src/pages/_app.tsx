@@ -2,6 +2,7 @@ import 'leaflet/dist/leaflet.css'
 import type { AppProps } from 'next/app'
 import { Catamaran } from 'next/font/google'
 import Head from 'next/head'
+import 'semantic-ui-css/semantic.min.css'
 
 import '@src/globals.css'
 

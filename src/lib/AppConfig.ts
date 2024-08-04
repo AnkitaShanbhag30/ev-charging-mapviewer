@@ -15,7 +15,7 @@ export const AppConfig = {
   baseCenter: [52.02022592597971, 8.530780645829076] as LatLngExpression, // bielefeld lol
 }
 
-export enum NavMenuVariant {
+export enum MapSelectorVariant {
   INTRO = 'vertical',
   TOPNAV = 'horizontal',
 }

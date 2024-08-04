@@ -22,6 +22,7 @@ import Toggle from 'react-toggle'
 
 import { Range } from '.'
 import { GeoJSONData, GeoJSONFeature } from './GeoJSONData'
+import LayerControl from './LayerControl'
 
 interface DataControlsProps {
   dataControlsTitle: string
@@ -64,7 +65,6 @@ export const DataControls: React.FC<DataControlsProps> = ({
     opacity: 0.5,
   })
   const [showColorPicker, setShowColorPicker] = useState(false)
-
   const popMax = 200
   const ciScoreMax = 100
   const levMax = 1000
@@ -327,44 +327,16 @@ export const DataControls: React.FC<DataControlsProps> = ({
       </div>
       {showLayerData && isExpanded && (
         <>
-          {/* Population Slider */}
-          {togglePopRange && (
-            <label>
-              <br />
-              Population in pixel: {popRange[0]} to {popRange[1] === popMax ? '∞' : popRange[1]}
-              <Slider
-                min={0}
-                max={popMax}
-                value={popRange}
-                onAfterChange={setPopRange}
-                thumbClassName="slider-thumb"
-                trackClassName="slider-track"
-                renderThumb={(
-                  props: JSX.IntrinsicAttributes &
-                    React.ClassAttributes<HTMLDivElement> &
-                    React.HTMLAttributes<HTMLDivElement>,
-                  state: {
-                    valueNow:
-                      | string
-                      | number
-                      | boolean
-                      | React.ReactElement<unknown, string | React.JSXElementConstructor<unknown>>
-                      | React.ReactFragment
-                      | React.ReactPortal
-                      | null
-                      | undefined
-                  },
-                ) => <div {...props}>{state.valueNow}</div>}
-                pearling
-                minDistance={0}
-              />
-            </label>
-          )}
           {/* CI Score Slider */}
           {toggleCiRange && (
             <label>
               <br />
-              CalEnviroScreen4.0 percentile: {ciScoreRange[0]} to {ciScoreRange[1]}
+              <LayerControl
+                mainText="CalEnviroScreen4.0 percentile"
+                hoverText="Slide to adjust the community environmental justice impact score. Higher scores = greater priority."
+                accordionText={`<p>Range: ${ciScoreRange[0]} to ${ciScoreRange[1]}</p> 
+                <p>CalEnviroScreen4.0 is California’s state environmental justice impact screening tool. CES4.0 combines 21 pollution and population-based criteria into a composite score at the census tract level, with percentile rankings based on comparison to statewide averages. More information available <a href="https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-40" className="inline-link">here</a>.</p>`}
+              />
               <Slider
                 min={0}
                 max={ciScoreMax}
@@ -397,7 +369,14 @@ export const DataControls: React.FC<DataControlsProps> = ({
           {toggleLevRange && (
             <label>
               <br />
-              LEVs/10000: {levRange[0]} to {levRange[1] === levMax ? '∞' : levRange[1]}
+              <LayerControl
+                mainText="LEVs/10000"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${levRange[0]} to ${
+                  levRange[1] === levMax ? '∞' : levRange[1]
+                }</p><p>Placeholder text</p>`}
+              />
+              {/* LEVs/10000: {levRange[0]} to {levRange[1] === levMax ? '∞' : levRange[1]} */}
               <Slider
                 min={0}
                 max={levMax}
@@ -429,8 +408,14 @@ export const DataControls: React.FC<DataControlsProps> = ({
           {/* Multi-Fa Slider */}
           {toggleMultiFaRange && (
             <label>
-              <br /># Multifamily residents/pixel: {multiFaRange[0]} to{' '}
-              {multiFaRange[1] === multiFaMax ? '∞' : multiFaRange[1]}
+              <br />
+              <LayerControl
+                mainText="Multifamily residents/pixel"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${multiFaRange[0]} to ${
+                  multiFaRange[1] === multiFaMax ? '∞' : multiFaRange[1]
+                }</p><p>Placeholder text</p>`}
+              />
               <Slider
                 min={0}
                 max={multiFaMax}
@@ -462,8 +447,14 @@ export const DataControls: React.FC<DataControlsProps> = ({
           {/* Renters Slider */}
           {toggleRentersRange && (
             <label>
-              <br /># Renters/pixel: {rentersRange[0]} to{' '}
-              {rentersRange[1] === rentersMax ? '∞' : rentersRange[1]}
+              <br />
+              <LayerControl
+                mainText="Renters/pixel"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${rentersRange[0]} to ${
+                  rentersRange[1] === rentersMax ? '∞' : rentersRange[1]
+                }</p><p>Placeholder text</p>`}
+              />
               <Slider
                 min={0}
                 max={rentersMax}
@@ -496,8 +487,13 @@ export const DataControls: React.FC<DataControlsProps> = ({
           {toggleWalkableRange && (
             <label>
               <br />
-              L2 chargers within 10 min walk: {walkableRange[0]} to{' '}
-              {walkableRange[1] === walkableMax ? '∞' : walkableRange[1]}
+              <LayerControl
+                mainText="L2 chargers within 10 min walk"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${walkableRange[0]} to ${
+                  walkableRange[1] === walkableMax ? '∞' : walkableRange[1]
+                }</p><p>Placeholder text</p>`}
+              />
               <Slider
                 min={0}
                 max={walkableMax}
@@ -530,8 +526,13 @@ export const DataControls: React.FC<DataControlsProps> = ({
           {toggleDrivableRange && (
             <label>
               <br />
-              DCF chargers within 10 min drive: {drivableRange[0]} to{' '}
-              {drivableRange[1] === drivableMax ? '∞' : drivableRange[1]}
+              <LayerControl
+                mainText="DCF chargers within 10 min drive"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${drivableRange[0]} to ${
+                  drivableRange[1] === drivableMax ? '∞' : drivableRange[1]
+                }</p><p>Placeholder text</p>`}
+              />
               <Slider
                 min={0}
                 max={drivableMax}
@@ -560,11 +561,54 @@ export const DataControls: React.FC<DataControlsProps> = ({
               />
             </label>
           )}
+          {/* Population Slider */}
+          {togglePopRange && (
+            <label>
+              <br />
+              <LayerControl
+                mainText="Population in pixel"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${popRange[0]} to ${
+                  popRange[1] === popMax ? '∞' : popRange[1]
+                }</p><p>Placeholder text</p>`}
+              />
+              <Slider
+                min={0}
+                max={popMax}
+                value={popRange}
+                onAfterChange={setPopRange}
+                thumbClassName="slider-thumb"
+                trackClassName="slider-track"
+                renderThumb={(
+                  props: JSX.IntrinsicAttributes &
+                    React.ClassAttributes<HTMLDivElement> &
+                    React.HTMLAttributes<HTMLDivElement>,
+                  state: {
+                    valueNow:
+                      | string
+                      | number
+                      | boolean
+                      | React.ReactElement<unknown, string | React.JSXElementConstructor<unknown>>
+                      | React.ReactFragment
+                      | React.ReactPortal
+                      | null
+                      | undefined
+                  },
+                ) => <div {...props}>{state.valueNow}</div>}
+                pearling
+                minDistance={0}
+              />
+            </label>
+          )}
           {/* Commercial Zoning Slider */}
           {toggleCommercialRange && (
             <label>
               <br />
-              Commercial Zoning %: {commercialRange[0]} to {commercialRange[1]}
+              <LayerControl
+                mainText="Commercial Zoning %"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${commercialRange[0]} to ${commercialRange[1]}</p><p>Placeholder text</p>`}
+              />
               <Slider
                 min={0}
                 max={commercialMax}
@@ -597,7 +641,11 @@ export const DataControls: React.FC<DataControlsProps> = ({
           {toggleResidentialRange && (
             <label>
               <br />
-              Multifamily Residential Zoning %: {residentialRange[0]} to {residentialRange[1]}
+              <LayerControl
+                mainText="Multifamily Residential Zoning %"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${residentialRange[0]} to ${residentialRange[1]}</p><p>Placeholder text</p>`}
+              />
               <Slider
                 min={0}
                 max={residentialMax}
@@ -630,8 +678,13 @@ export const DataControls: React.FC<DataControlsProps> = ({
           {togglePgeFilterActive && (
             <label>
               <br />
-              PG&E load capacity through pixel (kW): {pgeRange[0]} to{' '}
-              {pgeRange[1] === pgeMax ? '∞' : pgeRange[1]}
+              <LayerControl
+                mainText="PG&E load capacity through pixel (kW)"
+                hoverText="Slide to adjust"
+                accordionText={`<p>Range: ${pgeRange[0]} to ${
+                  pgeRange[1] === pgeMax ? '∞' : pgeRange[1]
+                }</p><p>Placeholder text</p>`}
+              />
               <Slider
                 min={0}
                 max={pgeMax}
